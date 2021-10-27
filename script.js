@@ -11,16 +11,16 @@ for(let i = 0; i < pos.length; i++) {
     pos[i].addEventListener('click', a => {
         if(occupied[i] == 0){
             pos[i].insertAdjacentText('beforeend', 'X');
-            occupied[i] = 1;
-            checkEnd();  
-            bot();
-            round++;        
+            occupied[i] = 1; 
+            round++; 
+            checkEnd();
+            setTimeout(() => {bot()}, 100);        
         }         
     });
 }
 
 function bot() {
-    if(round != 4){
+    if(round != 5){
         var x = parseInt(Math.random() * 9);
         if(occupied[x] == 0){            
             pos[x].insertAdjacentText('beforeend', 'O');
@@ -33,7 +33,7 @@ function bot() {
 }
 
 function checkEnd() {
-    if(round == 4){
+    if(round == 5){
         res.textContent = 'Empate!';
         btnReset.style.visibility = "visible";
         res.style.visibility = "visible";
