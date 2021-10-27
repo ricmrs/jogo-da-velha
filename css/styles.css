@@ -51,6 +51,13 @@
     user-select: none;
 }
 
+.result {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .reset {
     display: block;
     padding: 5px 25px;
