@@ -17,7 +17,13 @@ for(let i = 0; i < pos.length; i++) {
             occupied[i] = 2;
             }
             round++;
-            checkEnd();
+            if(round >= 5){
+                checkEnd();
+            }            
+        }
+        if(round == 9) {
+            console.log("empate");
+            btnReset.style.visibility = "visible";
         }
     });
 }
@@ -77,6 +83,7 @@ function ocp(){
     for(var i = 0; i < 9; i++){
         occupied[i] = 3;
     }
+    btnReset.style.visibility = "visible";
 }
 
 let btnReset = window.document.querySelector('.reset')
@@ -88,4 +95,5 @@ btnReset.addEventListener('click', function(){
         occupied[i] = 0;
         round = 0;
     }
+    btnReset.style.visibility = "hidden";
 })

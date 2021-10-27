@@ -30,6 +30,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #c9ddff;
+	font-family: 'Irish Grover', cursive;
 }
 ol, ul {
 	list-style: none;

@@ -1,6 +1,8 @@
 .title {
     text-align: center;
-    font: normal 30pt 'Arial';
+    font-size: 50px;
+    color: red;
+    text-shadow: 2px 2px 3px #000;
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -51,7 +53,18 @@
 
 .reset {
     display: block;
-    width: 100px;
-    height: 35px;
+    padding: 5px 25px;
     margin: 20px auto;
+    background-color: #F3DFA2;
+    color: #231f20;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #FCD581;
+    transition: transform 100ms linear;
+    visibility: hidden;
+}
+
+.reset:hover {
+    transform: scale(1.08);
 }
