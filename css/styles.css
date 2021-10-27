@@ -46,4 +46,12 @@
     vertical-align: middle;
     font: normal 70pt 'Arial';
     line-height: 150px;
+    user-select: none;
+}
+
+.reset {
+    display: block;
+    width: 100px;
+    height: 35px;
+    margin: 20px auto;
 }
