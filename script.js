@@ -1,11 +1,11 @@
-let pos = window.document.querySelectorAll('.pos');
+const pos = window.document.querySelectorAll('.pos');
+const mode = window.document.querySelector('#bot');
+const modepvp = window.document.querySelector('#pvp');
+const label = window.document.querySelectorAll('.gamemode');
+const res = window.document.querySelector('.result');
+const btnReset = window.document.querySelector('.reset');
 let round = 0;
 let occupied = [];
-let mode = window.document.querySelector('#bot');
-let modepvp = window.document.querySelector('#pvp');
-let label = window.document.querySelectorAll('.gamemode');
-let res = window.document.querySelector('.result');
-let btnReset = window.document.querySelector('.reset');
 
 for(var i = 0; i < 9; i++){
     occupied.push(0);
@@ -55,6 +55,7 @@ function bot() {
 function checkEnd() {
     for(i = 0; i <= 6; i += 3){ //rows
         if(occupied[i] == 1 && occupied[i+1] == 1 && occupied[i+2] == 1){
+            pos[i+1].setAttribute("id","bar-row_green");
             if(mode.checked){ res.textContent = 'Você ganhou!';
             } else { res.textContent = 'Jogador 1 ganhou!' }
             res.style.color = 'green';
@@ -64,6 +65,7 @@ function checkEnd() {
             endsGame();
         }
         if(occupied[i] == 2 && occupied[i+1] == 2 && occupied[i+2] == 2){
+            pos[i+1].setAttribute("id","bar-row_red");
             if(mode.checked){ res.textContent = 'Você perdeu!';
             } else { res.textContent = 'Jogador 2 ganhou!' }
             res.style.color = 'red';
@@ -75,6 +77,7 @@ function checkEnd() {
     }
     for(i = 0; i <= 2; i++){ //columns
         if(occupied[i] == 1 && occupied[i+3] == 1 && occupied[i+6] == 1){
+            pos[i+3].setAttribute("id","bar-col_green");
             if(mode.checked){ res.textContent = 'Você ganhou!';
             } else { res.textContent = 'Jogador 1 ganhou!' }
             res.style.color = 'green';
@@ -84,6 +87,7 @@ function checkEnd() {
             endsGame();
         }
         if(occupied[i] == 2 && occupied[i+3] == 2 && occupied[i+6] == 2){
+            pos[i+3].setAttribute("id","bar-col_red");
             if(mode.checked){ res.textContent = 'Você perdeu!';
             } else { res.textContent = 'Jogador 2 ganhou!' }
             res.style.color = 'red';
@@ -95,6 +99,11 @@ function checkEnd() {
     }
     for(i=2; i <= 4; i += 2){ //cross
         if(occupied[4-i] == 1 && occupied[4] == 1 && occupied[4+i] == 1){
+            if(pos[2].textContent == "X" && pos[6].textContent == "X") {
+                pos[4].setAttribute("id","bar-cross_greenP");
+            } else {
+                pos[4].setAttribute("id","bar-cross_greenN");
+            }
             if(mode.checked){ res.textContent = 'Você ganhou!';
             } else { res.textContent = 'Jogador 1 ganhou!' }
             res.style.color = 'green';
@@ -104,6 +113,11 @@ function checkEnd() {
             endsGame();
         }
         if(occupied[4-i] == 2 && occupied[4] == 2 && occupied[4+i] == 2){
+            if(pos[2].textContent == "O" && pos[6].textContent == "O") {
+                pos[4].setAttribute("id","bar-cross_redP");
+            } else {
+                pos[4].setAttribute("id","bar-cross_redN");
+            }
             if(mode.checked){ res.textContent = 'Você perdeu!';
             } else { res.textContent = 'Jogador 2 ganhou!' }
             res.style.color = 'red';
@@ -140,6 +154,7 @@ btnReset.addEventListener('click', function(){
     for(var i = 0; i < 9; i++){
         pos[i].textContent = "";
         pos[i].style.color = '#000';
+        pos[i].removeAttribute("id");
         occupied[i] = 0;
     }
     round = 0;

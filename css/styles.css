@@ -105,3 +105,75 @@
 .reset:hover {
     transform: scale(1.08);
 }
+
+#bar-row_green::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 400px;
+    background-color: green;
+    transform: translate(-120px,-80px);
+}
+
+#bar-row_red::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 400px;
+    background-color: red;
+    transform: translate(-120px,-80px);
+}
+
+#bar-col_green::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 400px;
+    background-color: green;
+    transform: translate(-125px,-77px) rotate(90deg);
+}
+
+#bar-col_red::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 400px;
+    background-color: red;
+    transform: translate(-125px,-77px) rotate(90deg);
+}
+
+#bar-cross_greenN::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 600px;
+    background-color: green;
+    transform: translate(-220px,-75px) rotate(45deg);
+}
+
+#bar-cross_redN::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 600px;
+    background-color: red;
+    transform: translate(-220px,-75px) rotate(45deg);
+}
+
+#bar-cross_greenP::before {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 600px;
+    background-color: green;
+    transform: translate(-230px,75px) rotate(-45deg)
+}
+
+#bar-cross_redP::before {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 600px;
+    background-color: red;
+    transform: translate(-230px,75px) rotate(-45deg)
+}
