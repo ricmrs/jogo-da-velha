@@ -112,7 +112,7 @@
     height: 5px;
     width: 400px;
     background-color: green;
-    transform: translate(-120px,-80px);
+    transform: translate(-126px,-80px);
 }
 
 #bar-row_red::after {
@@ -121,7 +121,7 @@
     height: 5px;
     width: 400px;
     background-color: red;
-    transform: translate(-120px,-80px);
+    transform: translate(-126px,-80px);
 }
 
 #bar-col_green::after {
@@ -130,7 +130,7 @@
     height: 5px;
     width: 400px;
     background-color: green;
-    transform: translate(-125px,-77px) rotate(90deg);
+    transform: translate(-125px,-78px) rotate(90deg);
 }
 
 #bar-col_red::after {
@@ -139,7 +139,7 @@
     height: 5px;
     width: 400px;
     background-color: red;
-    transform: translate(-125px,-77px) rotate(90deg);
+    transform: translate(-125px,-78px) rotate(90deg);
 }
 
 #bar-cross_greenN::after {
@@ -148,7 +148,7 @@
     height: 5px;
     width: 600px;
     background-color: green;
-    transform: translate(-220px,-75px) rotate(45deg);
+    transform: translate(-224px,-78px) rotate(45deg);
 }
 
 #bar-cross_redN::after {
@@ -157,7 +157,7 @@
     height: 5px;
     width: 600px;
     background-color: red;
-    transform: translate(-220px,-75px) rotate(45deg);
+    transform: translate(-224px,-78px) rotate(45deg);
 }
 
 #bar-cross_greenP::before {
@@ -166,7 +166,7 @@
     height: 5px;
     width: 600px;
     background-color: green;
-    transform: translate(-230px,75px) rotate(-45deg)
+    transform: translate(-224px,70px) rotate(-45deg)
 }
 
 #bar-cross_redP::before {
@@ -175,5 +175,5 @@
     height: 5px;
     width: 600px;
     background-color: red;
-    transform: translate(-230px,75px) rotate(-45deg)
+    transform: translate(-224px,70px) rotate(-45deg)
 }
