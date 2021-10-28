@@ -49,19 +49,42 @@
     vertical-align: middle;
     font: normal 70pt 'Arial';
     line-height: 150px;
-    user-select: none;
 }
 
 .wrap-mode {
-    width: 280px;
+    width: 300px;
     margin: auto;
     margin-top: 20px;
     font-size: 30px;
     line-height: 40px;
 }
 
+.input {
+    visibility: hidden;
+}
+
+.gamemode {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.gamemode.-checked {
+    color: red;
+} 
+
+.gamemode.-checked::after{
+    content: '\2713';
+    margin-left: 10px;
+}
+
+.gamemode:hover {
+    transform: scale(1.08);
+}
+
 .result {
-    font-size: 30px;
+    font-size: 50px;
     text-align: center;
     margin-top: 20px;
 }

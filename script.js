@@ -1,13 +1,15 @@
 let pos = window.document.querySelectorAll('.pos');
 let round = 0;
-let occupied = []
-let res = window.document.querySelector('.result');
+let occupied = [];
 let mode = window.document.querySelector('#bot');
 let modepvp = window.document.querySelector('#pvp');
+let label = window.document.querySelectorAll('.gamemode');
+let res = window.document.querySelector('.result');
+let btnReset = window.document.querySelector('.reset');
 
 for(var i = 0; i < 9; i++){
     occupied.push(0);
-}
+};
 
 for(let i = 0; i < pos.length; i++) {
         pos[i].addEventListener('click', a => {
@@ -18,7 +20,7 @@ for(let i = 0; i < pos.length; i++) {
                     occupied[i] = 1; 
                     round++; 
                     checkEnd();
-                    setTimeout(() => {bot()}, 100);  //VER EMPATE !      
+                    setTimeout(() => {bot()}, 100);     
                 }
             } else {
                 mode.setAttribute("disabled", "");
@@ -36,7 +38,6 @@ for(let i = 0; i < pos.length; i++) {
             }           
         });
 }
-
 
 function bot() {
     if(occupied[i] != 3){
@@ -135,8 +136,6 @@ function endsGame(){
     modepvp.removeAttribute("disabled", "");
 }
 
-let btnReset = window.document.querySelector('.reset');
-
 btnReset.addEventListener('click', function(){
     for(var i = 0; i < 9; i++){
         pos[i].textContent = "";
@@ -147,4 +146,18 @@ btnReset.addEventListener('click', function(){
     btnReset.style.visibility = "hidden";
     res.style.visibility = "hidden";
     res.style.color = "#000";
+})
+
+label[0].addEventListener('click', function(){
+    if(!(mode.hasAttribute('disabled'))){
+        label[0].className = 'gamemode -checked'
+        label[1].className = 'gamemode'
+    }
+})
+
+label[1].addEventListener('click', function(){
+    if(!(modepvp.hasAttribute('disabled'))){
+        label[1].className = 'gamemode -checked'
+        label[0].className = 'gamemode'
+    }    
 })
