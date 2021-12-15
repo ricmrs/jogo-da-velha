@@ -1,178 +1,140 @@
-const pos = window.document.querySelectorAll('.pos');
-const mode = window.document.querySelector('#bot');
-const modepvp = window.document.querySelector('#pvp');
-const label = window.document.querySelectorAll('.gamemode');
-const res = window.document.querySelector('.result');
-const btnReset = window.document.querySelector('.reset');
+const $pos = window.document.querySelectorAll('.pos');
+const $mode = window.document.querySelector('#bot');
+const $modepvp = window.document.querySelector('#pvp');
+const $label = window.document.querySelectorAll('.gamemode');
+const $result = window.document.querySelector('.result');
+const $btnReset = window.document.querySelector('.reset');
+let winner = null
 let round = 0;
-let occupied = [];
 
-for(var i = 0; i < 9; i++){
-    occupied.push(0);
+function play(event) {
+    if(winner){
+        return
+    }
+    const $origin = event.target
+    if($mode.checked){
+        $modepvp.setAttribute("disabled", "");
+        if($origin.innerText == ""){
+            $origin.insertAdjacentText('beforeend', 'X');
+            round++; 
+            winner = checkEnd();
+            setTimeout(bot, 100);     
+        }
+    } else {
+        $mode.setAttribute("disabled", "");
+        if($origin.innerText == ""){
+            if(round % 2 == 0){
+                $origin.insertAdjacentText('beforeend', 'X');
+            } else {
+                $origin.insertAdjacentText('beforeend', 'O');
+            }
+            round++;
+            winner = checkEnd();       
+        }
+    }           
 };
 
-for(let i = 0; i < pos.length; i++) {
-        pos[i].addEventListener('click', a => {
-            if(mode.checked){
-                modepvp.setAttribute("disabled", "");
-                if(occupied[i] == 0){
-                    pos[i].insertAdjacentText('beforeend', 'X');
-                    occupied[i] = 1; 
-                    round++; 
-                    checkEnd();
-                    setTimeout(() => {bot()}, 100);     
-                }
-            } else {
-                mode.setAttribute("disabled", "");
-                if(occupied[i] == 0){
-                    if(round % 2 == 0){
-                    pos[i].insertAdjacentText('beforeend', 'X');
-                    occupied[i] = 1;
-                    } else {
-                    pos[i].insertAdjacentText('beforeend', 'O');
-                    occupied[i] = 2;
-                    }
-                    round++;
-                    checkEnd();       
-                }
-            }           
-        });
-}
-
 function bot() {
-    if(occupied[i] != 3){
-        var x = parseInt(Math.random() * 9);
-        if(occupied[x] == 0){            
-            pos[x].insertAdjacentText('beforeend', 'O');
-            occupied[x] = 2;
-            checkEnd();          
-        } else {
-            bot();
-        }
+    if(winner){
+        return
+    }
+    var rand = parseInt(Math.random() * 9);
+    if($pos[rand].innerText == ""){            
+        $pos[rand].insertAdjacentText('beforeend', 'O');
+        round++;
+        winner = checkEnd();          
+    } else {
+        bot();
     }
 }
 
 function checkEnd() {
-    for(i = 0; i <= 6; i += 3){ //rows
-        if(occupied[i] == 1 && occupied[i+1] == 1 && occupied[i+2] == 1){
-            pos[i+1].setAttribute("id","bar-row_green");
-            if(mode.checked){ res.textContent = 'Você ganhou!';
-            } else { res.textContent = 'Jogador 1 ganhou!' }
-            res.style.color = 'green';
-            pos[i].style.color = 'green';
-            pos[i+1].style.color = 'green';
-            pos[i+2].style.color = 'green';
-            endsGame();
-        }
-        if(occupied[i] == 2 && occupied[i+1] == 2 && occupied[i+2] == 2){
-            pos[i+1].setAttribute("id","bar-row_red");
-            if(mode.checked){ res.textContent = 'Você perdeu!';
-            } else { res.textContent = 'Jogador 2 ganhou!' }
-            res.style.color = 'red';
-            pos[i].style.color = 'red';
-            pos[i+1].style.color = 'red';
-            pos[i+2].style.color = 'red';
-            endsGame();
-        }
-    }
-    for(i = 0; i <= 2; i++){ //columns
-        if(occupied[i] == 1 && occupied[i+3] == 1 && occupied[i+6] == 1){
-            pos[i+3].setAttribute("id","bar-col_green");
-            if(mode.checked){ res.textContent = 'Você ganhou!';
-            } else { res.textContent = 'Jogador 1 ganhou!' }
-            res.style.color = 'green';
-            pos[i].style.color = 'green';
-            pos[i+3].style.color = 'green';
-            pos[i+6].style.color = 'green';
-            endsGame();
-        }
-        if(occupied[i] == 2 && occupied[i+3] == 2 && occupied[i+6] == 2){
-            pos[i+3].setAttribute("id","bar-col_red");
-            if(mode.checked){ res.textContent = 'Você perdeu!';
-            } else { res.textContent = 'Jogador 2 ganhou!' }
-            res.style.color = 'red';
-            pos[i].style.color = 'red';
-            pos[i+3].style.color = 'red';
-            pos[i+6].style.color = 'red';
-            endsGame();
-        }
-    }
-    for(i=2; i <= 4; i += 2){ //cross
-        if(occupied[4-i] == 1 && occupied[4] == 1 && occupied[4+i] == 1){
-            if(pos[2].textContent == "X" && pos[6].textContent == "X") {
-                pos[4].setAttribute("id","bar-cross_greenP");
+    const line = [
+        [0, 1, 2, 'r'],
+        [3, 4, 5, 'r'],
+        [6, 7, 8, 'r'],
+        [0, 3, 6, 'c'],
+        [1, 4, 7, 'c'],
+        [2, 5, 8, 'c'],
+        [0, 4, 8, 'xN'],
+        [2, 4, 6, 'xP'],
+    ];
+    for(i = 0; i < line.length; i++){
+        const [a, b, c, d] = line[i];
+        let $color;
+        if ($pos[a].innerText && $pos[a].innerText === $pos[b].innerText && $pos[a].innerText === $pos[c].innerText) {
+            if ($pos[a].innerText === 'X') {
+                $color = 'green';
+                if($mode.checked){
+                    $result.textContent = 'Você ganhou!';
+                } else {
+                    $result.textContent = 'Jogador 1 ganhou!';
+                }
             } else {
-                pos[4].setAttribute("id","bar-cross_greenN");
+                $color = 'red';
+                if($mode.checked){
+                    $result.textContent = 'Você perdeu!';
+                } else {
+                    $result.textContent = 'Jogador 2 ganhou!';
+                }
             }
-            if(mode.checked){ res.textContent = 'Você ganhou!';
-            } else { res.textContent = 'Jogador 1 ganhou!' }
-            res.style.color = 'green';
-            pos[4-i].style.color = 'green';
-            pos[4].style.color = 'green';
-            pos[4+i].style.color = 'green';
-            endsGame();
-        }
-        if(occupied[4-i] == 2 && occupied[4] == 2 && occupied[4+i] == 2){
-            if(pos[2].textContent == "O" && pos[6].textContent == "O") {
-                pos[4].setAttribute("id","bar-cross_redP");
-            } else {
-                pos[4].setAttribute("id","bar-cross_redN");
+            switch (d) {
+                case 'r':
+                    $pos[b].setAttribute("id",`bar-row_${$color}`);
+                    break;
+                case 'c':
+                    $pos[b].setAttribute("id", `bar-col_${$color}`);
+                    break;
+                case 'xN':
+                    $pos[b].setAttribute("id",`bar-cross_${$color}N`);
+                    break;
+                case 'xP':
+                    $pos[b].setAttribute("id", `bar-cross_${$color}P`);
+                    break;
             }
-            if(mode.checked){ res.textContent = 'Você perdeu!';
-            } else { res.textContent = 'Jogador 2 ganhou!' }
-            res.style.color = 'red';
-            pos[4-i].style.color = 'red';
-            pos[4].style.color = 'red';
-            pos[4+i].style.color = 'red';
+            $pos[a].style.color = $pos[b].style.color = $pos[c].style.color = $result.style.color =  $color;
             endsGame();
+            return $pos[a].innerText;
         }
     }
-    if(mode.checked){
-        if(round == 5 && res.style.visibility == "hidden"){
-            res.textContent = 'Empate!';
-            endsGame();
-        }
-    } else {
-        if (round == 9 && res.style.visibility == "hidden"){
-            res.textContent = 'Empate!';
-            endsGame();
-        }
-    }    
+    if (round == 9 && !winner) {
+        $result.textContent = 'Empate!';
+        endsGame();
+        return 'Empate';
+    }
+    return null;
 }
 
 function endsGame(){
-    for(var i = 0; i < 9; i++){
-        occupied[i] = 3;
-    }
-    btnReset.style.visibility = "visible";
-    res.style.visibility = "visible";
-    mode.removeAttribute("disabled", "");
-    modepvp.removeAttribute("disabled", "");
+    $btnReset.style.visibility = "visible";
+    $result.style.visibility = "visible";
+    $mode.removeAttribute("disabled", "");
+    $modepvp.removeAttribute("disabled", "");
 }
 
-btnReset.addEventListener('click', function(){
+$btnReset.addEventListener('click', function(){
     for(var i = 0; i < 9; i++){
-        pos[i].textContent = "";
-        pos[i].style.color = '#000';
-        pos[i].removeAttribute("id");
-        occupied[i] = 0;
+        $pos[i].textContent = "";
+        $pos[i].style.color = '#000';
+        $pos[i].removeAttribute("id");
     }
+    winner = null;
     round = 0;
-    btnReset.style.visibility = "hidden";
-    res.style.visibility = "hidden";
-    res.style.color = "#000";
+    $btnReset.style.visibility = "hidden";
+    $result.style.visibility = "hidden";
+    $result.style.color = "#000";
 })
 
-label[0].addEventListener('click', function(){
-    if(!(mode.hasAttribute('disabled'))){
-        label[0].className = 'gamemode -checked'
-        label[1].className = 'gamemode'
+$label[0].addEventListener('click', function(){
+    if(!($mode.hasAttribute('disabled'))){
+        $label[0].className = 'gamemode -checked'
+        $label[1].className = 'gamemode'
     }
 })
 
-label[1].addEventListener('click', function(){
-    if(!(modepvp.hasAttribute('disabled'))){
-        label[1].className = 'gamemode -checked'
-        label[0].className = 'gamemode'
+$label[1].addEventListener('click', function(){
+    if(!($modepvp.hasAttribute('disabled'))){
+        $label[1].className = 'gamemode -checked'
+        $label[0].className = 'gamemode'
     }    
 })
