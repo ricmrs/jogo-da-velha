@@ -1,0 +1,31 @@
+.wrap-mode {
+  width: 327px;
+  margin: auto;
+  margin-top: 30px;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.input {
+  visibility: hidden;
+}
+
+.gamemode {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.gamemode.-checked {
+  color: red;
+} 
+
+.gamemode.-checked::after{
+  content: '\2713';
+  margin-left: 10px;
+}
+
+.gamemode:hover {
+  transform: scale(1.08);
+}

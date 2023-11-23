@@ -11,11 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Irish+Grover&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/title.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/wrap-mode.css">
+    <link rel="stylesheet" href="css/wrap-result.css">
+    <link rel="stylesheet" href="css/endgame-bar.css">
 </head>
 <body>
     <h1 class=title>Jogo da Velha</h1>
-    <div class="box">
+    <div class="game">
         <div class="pos" onclick="play(event)"></div>
         <div class="pos" onclick="play(event)"></div>
         <div class="pos" onclick="play(event)"></div>
@@ -37,8 +41,16 @@
         <label for="pvp" class="gamemode">Jogador vs Jogador</label>
         </div>
     </div>
-    <p class="result"></p>
-    <button class="reset">Novo Jogo</button>
-    <script src="script.js"></script>
+    <div class="wrap-result">
+        <p class="result"></p>
+        <button class="reset">Novo Jogo</button>
+    </div>
+    
+    <script src="scripts/querySelect.js"></script>
+    <script src="scripts/playGame.js"></script>
+    <script src="scripts/checkWinner.js"></script>
+    <script src="scripts/endsGame.js"></script>
+    <script src="scripts/resetGame.js"></script>
+    <script src="scripts/disableGamemode.js"></script>
 </body>
 </html>

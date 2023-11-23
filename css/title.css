@@ -1,0 +1,9 @@
+.title {
+  text-align: center;
+  font-family: 'Irish Grover', cursive;
+  font-size: 50px;
+  color: red;
+  text-shadow: 2px 2px 3px #000;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}

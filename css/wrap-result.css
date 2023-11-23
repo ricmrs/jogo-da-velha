@@ -1,0 +1,32 @@
+.wrap-result {
+  position: absolute;
+  background-color: #F1FFE7e6;
+  border-radius: 15px;
+  padding: 25px 20px;
+  top: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+}
+
+.result {
+  font-size: 50px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.reset {
+  display: block;
+  padding: 5px 25px;
+  margin: 20px auto;
+  background-color: #F3DFA2;
+  color: #231f20;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #FCD581;
+  transition: transform 100ms linear;
+}
+
+.reset:hover {
+  transform: scale(1.08);
+}
