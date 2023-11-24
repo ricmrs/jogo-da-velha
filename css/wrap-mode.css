@@ -29,3 +29,14 @@
 .gamemode:hover {
   transform: scale(1.08);
 }
+
+@media screen and (max-width: 481px) {
+  .wrap-mode {
+    margin-top: 25px;
+    font-size: 25px;
+  }
+
+  .gamemode {
+    margin-left: 30px;
+  }
+}

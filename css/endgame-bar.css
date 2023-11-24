@@ -69,3 +69,45 @@
   background-color: red;
   transform: translate(-224px,70px) rotate(-45deg)
 }
+
+@media screen and (max-width: 481px) {
+  #bar-row_green::after {
+    width: 300px;
+    transform: translate(-100px,-55px);
+  }
+  
+  #bar-row_red::after {
+    width: 300px;
+    transform: translate(-100px,-55px);
+  }
+  
+  #bar-col_green::after {
+    width: 300px;
+    transform: translate(-100px,-55px) rotate(90deg);
+  }
+  
+  #bar-col_red::after {
+    width: 300px;
+    transform: translate(-100px,-55px) rotate(90deg);
+  }
+  
+  #bar-cross_greenN::after {
+    width: 400px;
+    transform: translate(-150px,-55px) rotate(45deg);
+  }
+  
+  #bar-cross_redN::after {
+    width: 400px;
+    transform: translate(-150px,-55px) rotate(45deg);
+  }
+  
+  #bar-cross_greenP::before {
+    width: 400px;
+    transform: translate(-150px,50px) rotate(-45deg)
+  }
+  
+  #bar-cross_redP::before {
+    width: 400px;
+    transform: translate(-150px,50px) rotate(-45deg)
+  } 
+}
